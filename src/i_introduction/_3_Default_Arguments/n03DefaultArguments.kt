@@ -1,5 +1,6 @@
 package i_introduction._3_Default_Arguments
 
+import com.sun.org.apache.xpath.internal.operations.Bool
 import util.TODO
 import util.doc2
 
@@ -14,12 +15,14 @@ fun todoTask3(): Nothing = TODO(
     documentation = doc2(),
     references = { name: String -> JavaCode3().foo(name); foo(name) })
 
-fun foo(name: String): String = todoTask3()
+fun foo(name: String, number: Int = 42, toUpperCase: Boolean = false): String {
+    val nameAndNumber = name + number
+    return if(toUpperCase) nameAndNumber.toUpperCase() else nameAndNumber
+}
 
 fun task3(): String {
-    todoTask3()
-//    return (foo("a") +
-//            foo("b", number = 1) +
-//            foo("c", toUpperCase = true) +
-//            foo(name = "d", number = 2, toUpperCase = true))
+    return (foo("a") +
+            foo("b", number = 1) +
+            foo("c", toUpperCase = true) +
+            foo(name = "d", number = 2, toUpperCase = true))
 }
